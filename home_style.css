@@ -5,7 +5,7 @@
 
 .dropbtn {
   background-color: inherit;
-  color: white;
+  color: #c0c0c0;
   padding:7px 16px;
   font-size: 16px;
   border: none;
@@ -33,14 +33,14 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #f0fff0}
+.dropdown-content a:hover {background-color: #10ac84;}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #00a86b;
+  color:#f8f8ff;
 }
 /* search_box */
 .search_box{
@@ -54,8 +54,9 @@
 }
 
 .search_btn{
-  color: #10ac84;
+  position:inherit;
   float: right;
+  color: #10ac84;
   width: 40px;
   height: 30px;
   border-radius: 50%;
@@ -68,7 +69,7 @@
   border: none;
   background: none;
   outline: none;
-  float: left;
+  float:left;
   padding: 0;
   color: White;
   font-size: 16px;
@@ -76,3 +77,13 @@
   line-height: 25px;
   width: 380px;
 }
+
+.log_sign button{
+  color: #10ac84;
+  display: inline;
+  border: none;
+  background: none;
+  margin-left: 6px;
+  padding: 8px;
+}
+.log_sign:hover{background-color: #2c3539;}
