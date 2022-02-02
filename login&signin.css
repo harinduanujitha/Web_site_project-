@@ -1,4 +1,4 @@
-/*login page*/
+/*login&signin page*/
 
 .loginbox{
   display: none;
@@ -28,12 +28,20 @@
   font-weight: bold;
 }
 
-.loginbox a{
+.btn2{
+  border: none;
+  background-color: inherit;
   font-family: sans-serif;
-  text-decoration: none;
   color: darkgrey;
   font-size: 11px;
-  line-height: 20px;
+}
+
+.loginbox a{
+  background-color: inherit;
+  font-family: sans-serif;
+  color: darkgrey;
+  font-size: 11px;
+  text-decoration: none;
 }
 
 .logp{
@@ -44,6 +52,10 @@
 }
 
 .loginbox a:hover{
+  color: green;
+}
+
+.loginbox .btn2:hover{
   color: green;
 }
 

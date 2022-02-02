@@ -16,36 +16,42 @@
         }
       }
     // login validation( *Importent* this funtion cruuntly not working  )
-    function validate(){
-      if(document.frm1.uname.value.length<3)
-      {
-        alert("please Enter user name");
-        document.getElementById("frm01").action="login.html";
-      }
-      if(document.frm1.psw.value.length<1)
-      {
-          alert("please Enter password");
-          document.getElementById("frm01").action="login.html";
-      }
-    }
     </script>
 
     <title>LogIn</title>
   </head>
   <body>
-    <!--login page-->
+    <!--login button-->
     <button onclick="document.getElementById('id01').style.display='block'",style="width:auto;">Log in</button>
     <div class="loginbox" id="id01">
       <h1>Log in</h1>
-      <form method="post" action="you_can_enter_php_file_here.php" class="animate" name="frm01" onsubmit="validate();">
-        <p>User name</p>
+      <form method="post" action="you_can_enter_php_file_here.php" class="animate" name="frm01" onsubmit="need_to_add_a_script_file_here">
+        <p>Username</p>
         <input type="text" placeholder="Enter username" name="uname" required>
         <p>Password</p>
         <input type="password" placeholder="Enter password" name="psw" required><br>
         <input type="submit" value="Login">
         <button class="canbtn" onclick="document.getElementById('id01').style.display='none'">Cancel</button><br>
         <a href="#">forgot your password?</a><br>
-        <p class="logp">Don't have an account?<a href="#">Sign here.</a></p>
+        <p class="logp">Don't have an account?<button type="button" class="btn2">Signin here.</button></p>
+      </form>
+    </div>
+    <!--signin button-->
+    <button onclick="document.getElementById('id02').style.display='block'",style="width:auto;">Sign in</button>
+    <div class="loginbox" id="id02" style="height:670px">
+      <h1>Sign in</h1>
+      <form method="post" action="you_can_enter_php_file_here.php" class="animate" name="frm02" onsubmit="need_to_add_a_script_file_here">
+        <p>Username</p>
+        <input type="text" placeholder="Enter username" name="uname" required>
+        <p>Email Address</p>
+        <input type="text" placeholder="Enter emailaddress" name="eaddress" required>
+        <p>Password</p>
+        <input type="password" placeholder="Enter password" name="psw" required>
+        <p>Confirm Password</p>
+        <input type="password" placeholder="ReEnter password" name="pswr" required><br>
+        <input type="submit" value="Signin">
+        <button class="canbtn" onclick="document.getElementById('id02').style.display='none'">Cancel</button><br>
+        <p class="logp">Have an account?<button type="button" class="btn2" onclick="document.getElementById('id01'.style.display='inherit')">Login here.</button></p>
       </form>
     </div>
   </body>
