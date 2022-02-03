@@ -17,12 +17,12 @@
 	<?php
 	echo"
 		<div class='comm'>
-		<form method='POST' action='".setComment($conn)."'>
-		<input type='hidden' name='UID' value='anonymous'>
-		<input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-		<textarea class='comm' name='message'></textarea>
-		<button class='comm' type='submit' name='submitComment'>Ask Question</button>
-		</form>
+			<form method='POST' action='".setComment($conn)."'>
+				<input type='hidden' name='UID' value='2'>
+				<input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+				<textarea class='comm' name='message'></textarea>
+				<button class='comm' type='submit' name='submitComment'>Comment</button>
+			</form>
 		</div>";
 	getComment($conn)
 	?>
