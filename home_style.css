@@ -1,6 +1,7 @@
 *{
   margin:0;
   padding:0;
+  box-sizing: border-box;
 }
 
 .dropbtn {
@@ -102,7 +103,7 @@
 }
 .bgimg-1 {
   background-image: url("images/15.jpg");
-  min-height: 800px;
+  min-height: 700px;
 }
 
 .bgimg-1 h1{
@@ -119,35 +120,14 @@
   min-height: 400px;
 }
 
-.bgimg-4, .bgimg-6 {
-  width: 1000px;
-  height: 500px;
+.bgimg-4, .bgimg-5, .bgimg-6 {
+  width: 500px;
+  height: 400px;
   position:relative;
   background-attachment: fixed;
-  background-position: right;
+  background-position:right;
   background-repeat: no-repeat;
   top: 0;
-}
-
-.bgimg-4{
-  background-image: url("images/4.svg");
-  float:right;
-}
-.bgimg-5 {
-  background-image: url("images/5.svg");
-  width: 1100px;
-  height: 750px;
-  position:relative;
-  background-attachment: fixed;
-  background-position: left;
-  background-repeat: no-repeat;
-  top: 0;
-  float:left;
-}
-
-.bgimg-6 {
-  background-image: url("images/6.svg");
-  float: right;
 }
 
 .p0{
@@ -168,17 +148,18 @@
   left: 15%;
 }
 
-.p-left h3{
+.p-left h2{
   color:#10ac84;
   top: 0;
 }
 
-.p-left h5{
+.p-left h3{
   color: #9dc183;
 }
 
 .p-left p{
   color: #fff;
+  font-size: 16px;
 }
 
 .p-right{
@@ -189,20 +170,19 @@
   right: 15%;
 }
 
-.p-right h3{
+.p-right h2{
   color:#10ac84;
   top: 0;
 }
 
-.p-right h5{
+.p-right h3{
   color: #9dc183;
 }
 
 .p-right p{
   color: #fff;
+  font-size: 16px;
 }
-
-
 
 .caption {
   position: absolute;
@@ -230,7 +210,46 @@ h3 {
 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2, .bgimg-3 {
+  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6  {
     background-attachment: scroll;
+  }
+}
+
+/*footer*/
+.column {
+  float: left;
+  width: 25%;
+  height: 225px;
+  padding: 10px;
+  background-color: #212529;
+  transform: translate(10px);
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column h2{
+  font-family: sans-serif;
+  color: #10ac84;
+}
+
+.column p{
+  color: #fff;
+}
+.column a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.column a:hover{
+  color: #10ac84;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
   }
 }
