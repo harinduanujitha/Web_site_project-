@@ -17,7 +17,25 @@ button.comm{
 	cursor:pointer;
 }
 div.comm{
-	width:80%;
+	width:99%;
 	padding:2px;
 	background-color:rgb(150,150,150)
 }
+div.comm1{
+	width:99%;
+	padding:2px;
+	background-color:rgb(150,150,150);
+	border: 5px solid rgb(33, 33, 33);
+}
+div.comm2{
+	width:99%;
+	padding:2px;
+	position:sticky;
+	top:5px;
+	background-color:rgb(108, 145, 99);
+	border: 5px solid rgb(33, 33, 33);
+}
+
+
+
+

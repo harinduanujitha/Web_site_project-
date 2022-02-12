@@ -17,42 +17,107 @@ function setComment($conn){
 function setReply($conn){
 	if(isset($_POST['submitReply'])){
 		$UID = $_POST['UID'];
+		$CommNo=$_POST['CommNo'];
 		$date = $_POST['date'];
-		$message = $_POST['message'];
-		
-		$sql = "INSERT INTO comments(U_ID,Date,Reply) 
-		values('$UID', '$date', '$message')";
+		$message = $_POST['reply'];
+
+		$sql = "INSERT INTO reply(Comm_No,U_ID,Date,Reply) 
+		values('$CommNo','$UID','$date','$message')"; 
 		
 		$result = $conn->query($sql);
+		
+	}
+	if(isset($_POST['Like'])){
+		$CommNo=$_POST['CommNo'];
+
+		$sql="UPDATE comments SET Likes = Likes + 1 WHERE Comm_No= '$CommNo'";
+		
+		$result = $conn->query($sql);
+	}
+	if(isset($_POST['Dislike'])){
+		$CommNo=$_POST['CommNo'];
+		
+		$sql="UPDATE comments SET Dislikes = Dislikes + 1 WHERE Comm_No= '$CommNo'";
+
+		$result = $conn->query($sql);
+	}
+	if(isset($_POST['getReply'])){
+		$CommNo=$_POST['CommNo'];
+
+		$sql="SELECT*FROM reply WHERE Comm_No='$CommNo'";
+	
+		$result = $conn->query($sql);
+		while($raw=$result->fetch_assoc()){
+			echo
+				$raw['U_ID'].	
+				"     Wrote at ".$raw['Date']."<br>".
+				"Comment Number:-"
+				.$raw['Comm_No']."<br>".
+				"<div class='comm'>".		
+					$raw['Comment']."<br><br>".
+				"</div>";
+		}
 	}
 }
 
 function addLike($conn){
+	if(isset($_POST['Like'])){
+		$CommNo=$_POST['CommNo'];
 
+		$sql="UPDATE comments SET Likes = Likes + 1 WHERE Comm_No= '$CommNo'";
+		$result = $conn->query($sql);
+	}
 }
+
+function addDislike($conn){
+	if(isset($_POST['Dislike'])){
+		$CommNo=$_POST['CommNo'];
+		
+		$sql="UPDATE comments SET Dislikes = Dislikes + 1 WHERE Comm_No='$CommNo'";
+
+		$result = $conn->query($sql);
+	}
+}
+
 
 function getComment($conn){
-	$sql="SELECT*FROM comments";
+	$sql="	SELECT comments.*, users.U_Name
+			FROM comments
+			INNER JOIN users 
+			ON
+    		comments.U_ID=users.U_ID
+			ORDER BY Likes DESC";
+	
 	$result = $conn->query($sql);
 	while($raw=$result->fetch_assoc()){
-		echo"<div class='comm'>".
-				$raw['U_ID'].	
-				"     At ".$raw['Date']."<br>".	
+		echo
+				$raw['U_Name'].	
+				"     Commented at ".$raw['Date']."<br>".
+				"Comment Number:-"
+				.$raw['Comm_No']."<br>".
+			"<div class='comm'>".		
+				$raw['Comment']."<br><br>".
+			"</div>"."<br>".
+			"likes".$raw['Likes']."    Dislikes".$raw['Dislikes']."<hr><br>";
+		//identify comment for the reply
+		$thisComment=$raw['Comm_No'];	
+	}
+}
+function getReply($conn){
+	$sql="SELECT*FROM reply WHERE Comm_No='$comm_No'";
+	
+	$result = $conn->query($sql);
+	while($raw=$result->fetch_assoc()){
+		echo
+			$raw['U_ID'].	
+			"     Wrote at ".$raw['Date']."<br>".
+			"Comment Number:-"
+			.$raw['Comm_No']."<br>".
+			"<div class='comm'>".		
 				$raw['Comment']."<br><br>".
 			"</div>";
-		echo"<button type=submit>Reply</button>";
-		echo"
-			<form method='POST' action='".setReply($conn)."'>
-				<input type='hidden' name='UID' value='2'>
-				<input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-				<textarea class='comm' name='message'>Comment youre ideas about this question</textarea>
-				<button class='comm' type='submit' name='submitReply'>Reply</button>
-			</form>";
 	}
-	
 }
 
-function deletes($conn) {
 
-}
 ?>
