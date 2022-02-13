@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2022 at 07:40 PM
+-- Generation Time: Feb 13, 2022 at 01:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -84,6 +84,49 @@ INSERT INTO `reply` (`Reply_No`, `Comm_No`, `U_ID`, `Date`, `Reply`, `Likes`, `D
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+  `Team_ID` int(11) NOT NULL,
+  `Team_Name` varchar(30) NOT NULL,
+  `Faculty` enum('computing','business','science','engineering') NOT NULL,
+  `Batch` varchar(5) DEFAULT NULL,
+  `Subject` varchar(50) DEFAULT NULL,
+  `Purpuse` text NOT NULL,
+  `Members` int(11) NOT NULL,
+  `Current_Members` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trequest`
+--
+
+CREATE TABLE `trequest` (
+  `Request_ID` int(11) NOT NULL,
+  `Team_ID` int(11) NOT NULL,
+  `Date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tsearch`
+--
+
+CREATE TABLE `tsearch` (
+  `TSearchNo` int(11) NOT NULL,
+  `U_ID` int(11) NOT NULL,
+  `Subject` int(11) NOT NULL,
+  `Task` varchar(100) NOT NULL,
+  `Conditions` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -127,6 +170,24 @@ ALTER TABLE `reply`
   ADD KEY `U_ID` (`U_ID`);
 
 --
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`Team_ID`);
+
+--
+-- Indexes for table `trequest`
+--
+ALTER TABLE `trequest`
+  ADD PRIMARY KEY (`Request_ID`);
+
+--
+-- Indexes for table `tsearch`
+--
+ALTER TABLE `tsearch`
+  ADD PRIMARY KEY (`TSearchNo`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -147,6 +208,24 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `reply`
   MODIFY `Reply_No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `Team_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `trequest`
+--
+ALTER TABLE `trequest`
+  MODIFY `Request_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tsearch`
+--
+ALTER TABLE `tsearch`
+  MODIFY `TSearchNo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
