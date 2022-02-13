@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="home_style.css">
     <title>Don't Get stuck.com</title>
-    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <link rel="icon" type="image/x-icon" href="images/logo.ico">
   </head>
   <body>
 
@@ -34,14 +34,47 @@
         <a class="nav-link" href="#">About Us</a>
       </li>
       <li class="log_sign">
-        <button><a href="login.html" style="text-decoration:none; color:#10ac84;">Log in</a></button>
+        <button type="submit" onclick="document.getElementById('id01').style.display='block'" style="width:auto; text-decoration:none; color:#10ac84;">Log in</button>
       </li>
       <li class="log_sign">
-        <button type="submit"><a href="signin.html" style="text-decoration:none; color:#10ac84;">Sign in</a></button>
+        <button type="submit" onclick="document.getElementById('id02').style.display='block'" style="width:auto; text-decoration:none; color:#10ac84;">Sign in</button>
       </li>
     </ul>
   </div>
 </nav>
+
+<!--login form-->
+<div class="loginbox" id="id01">
+  <h1>Log in</h1>
+  <form method="post" action="you_can_enter_php_file_here.php" class="animate" name="frm01" onsubmit="need_to_add_a_script_file_here">
+    <p>Username</p>
+    <input type="text" placeholder="Enter username" name="uname" required>
+    <p>Password</p>
+    <input type="password" placeholder="Enter password" name="psw" required><br>
+    <input type="submit" value="Login">
+    <button class="canbtn" onclick="document.getElementById('id01').style.display='none'">Cancel</button><br>
+    <a href="#">forgot your password?</a><br>
+    <p class="logp">Don't have an account?<button type="button" class="btn2">Signin here.</button></p>
+  </form>
+</div>
+
+  <!--signin form-->
+<div class="loginbox" id="id02" style="height:670px">
+  <h1>Sign in</h1>
+  <form method="post" action="you_can_enter_php_file_here.php" class="animate" name="frm02" onsubmit="need_to_add_a_script_file_here">
+    <p>Username</p>
+    <input type="text" placeholder="Enter username" name="uname" required>
+    <p>Email Address</p>
+    <input type="text" placeholder="Enter emailaddress" name="eaddress" required>
+    <p>Password</p>
+    <input type="password" placeholder="Enter password" name="psw" required>
+    <p>Confirm Password</p>
+    <input type="password" placeholder="ReEnter password" name="pswr" required><br>
+    <input type="submit" value="Signin">
+    <button class="canbtn" onclick="document.getElementById('id02').style.display='none'">Cancel</button><br>
+    <p class="logp">Have an account?<button type="button" class="btn2" onclick="document.getElementById('id01'.style.display='inherit')">Login here.</button></p>
+  </form>
+</div>
 
 <div class="p-5 bg-dark text-white text-center">
   <h1>Don't Get Stuck</h1>
@@ -118,7 +151,6 @@
   </div>
     <img src="images/6.svg" alt="" class="bgimg-6" style="left:50%;">
 </div>
-
 <!--footer-->
 <div class="row">
   <div class="column">
