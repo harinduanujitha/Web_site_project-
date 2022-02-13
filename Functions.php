@@ -14,7 +14,7 @@ function setComment($conn){
 }
 
 
-function setReply($conn){
+function ctrlComment($conn){
 	if(isset($_POST['submitReply'])){
 		$UID = $_POST['UID'];
 		$CommNo=$_POST['CommNo'];
@@ -44,19 +44,29 @@ function setReply($conn){
 	if(isset($_POST['getReply'])){
 		$CommNo=$_POST['CommNo'];
 
-		$sql="SELECT*FROM reply WHERE Comm_No='$CommNo'";
+		$sql="	SELECT *
+				FROM reply
+				WHERE Comm_No='$CommNo'";
+				/*LEFT JOIN users 
+				ON
+    			reply.U_ID=users.U_ID*/
 	
 		$result = $conn->query($sql);
+
+		//display replies
+
+		echo"<div class='comm2'>";
 		while($raw=$result->fetch_assoc()){
 			echo
 				$raw['U_ID'].	
-				"     Wrote at ".$raw['Date']."<br>".
+				"     replied at ".$raw['Date']."<br>".
 				"Comment Number:-"
 				.$raw['Comm_No']."<br>".
 				"<div class='comm'>".		
-					$raw['Comment']."<br><br>".
+					$raw['Reply']."<br><br>".
 				"</div>";
 		}
+		echo"</div>";
 	}
 }
 
@@ -104,9 +114,11 @@ function getComment($conn){
 	}
 }
 function getReply($conn){
+
 	$sql="SELECT*FROM reply WHERE Comm_No='$comm_No'";
 	
 	$result = $conn->query($sql);
+	echo"<div class=comm2>";
 	while($raw=$result->fetch_assoc()){
 		echo
 			$raw['U_ID'].	
@@ -117,6 +129,8 @@ function getReply($conn){
 				$raw['Comment']."<br><br>".
 			"</div>";
 	}
+
+	echo"</div>";
 }
 
 

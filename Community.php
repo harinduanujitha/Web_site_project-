@@ -27,7 +27,7 @@
 	echo
 	"<br><br>
 	<div class='comm2'>
-	<form method='POST' action='".setReply($conn)."'>
+	<form method='POST' action='".ctrlComment($conn)."'>
 		<label for='CommNo'>Enter the comment Number you wish to intaract with</label>
 		<input type=text name='CommNo'><br><hr>
 		<input type='hidden' name='UID' value='1'>
