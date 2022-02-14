@@ -13,7 +13,6 @@ function setComment($conn){
 	}
 }
 
-
 function ctrlComment($conn){
 	if(isset($_POST['submitReply'])){
 		$UID = $_POST['UID'];
@@ -55,7 +54,10 @@ function ctrlComment($conn){
 
 		//display replies
 
-		echo"<div class='comm2'>";
+		echo"
+		<div class='stick2'>
+		<h4>Replies</h4><hr class='comm'>
+		";
 		while($raw=$result->fetch_assoc()){
 			echo
 				$raw['U_ID'].	
@@ -64,7 +66,7 @@ function ctrlComment($conn){
 				.$raw['Comm_No']."<br>".
 				"<div class='comm'>".		
 					$raw['Reply']."<br><br>".
-				"</div>";
+				"</div><hr class='comm'>";
 		}
 		echo"</div>";
 	}
@@ -101,14 +103,15 @@ function getComment($conn){
 	$result = $conn->query($sql);
 	while($raw=$result->fetch_assoc()){
 		echo
+			"<div class='comm'>".
 				$raw['U_Name'].	
 				"     Commented at ".$raw['Date']."<br>".
 				"Comment Number:-"
-				.$raw['Comm_No']."<br>".
-			"<div class='comm'>".		
-				$raw['Comment']."<br><br>".
-			"</div>"."<br>".
-			"likes".$raw['Likes']."    Dislikes".$raw['Dislikes']."<hr><br>";
+				.$raw['Comm_No']."<br>
+			</div>".		
+				$raw['Comment']."<br><br>
+			<br>".
+			"<div class='comm'><pre>likes ".$raw['Likes']."     Dislikes <?pre>".$raw['Dislikes']."</div><hr class='comm'><br>";
 		//identify comment for the reply
 		$thisComment=$raw['Comm_No'];	
 	}
@@ -118,7 +121,10 @@ function getReply($conn){
 	$sql="SELECT*FROM reply WHERE Comm_No='$comm_No'";
 	
 	$result = $conn->query($sql);
-	echo"<div class=comm2>";
+	echo"
+	<div class=comm2>
+	<h4>Replies</h4>
+	";
 	while($raw=$result->fetch_assoc()){
 		echo
 			$raw['U_ID'].	
@@ -126,8 +132,8 @@ function getReply($conn){
 			"Comment Number:-"
 			.$raw['Comm_No']."<br>".
 			"<div class='comm'>".		
-				$raw['Comment']."<br><br>".
-			"</div>";
+				$raw['Comment']."<br>".
+			"</div><hr><hr>";
 	}
 
 	echo"</div>";
