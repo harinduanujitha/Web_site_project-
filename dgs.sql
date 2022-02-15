@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2022 at 01:29 PM
+-- Generation Time: Feb 15, 2022 at 03:43 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -57,6 +57,17 @@ INSERT INTO `comments` (`Comm_No`, `U_ID`, `Date`, `Comment`, `Likes`, `Dislikes
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `join_team`
+--
+
+CREATE TABLE `join_team` (
+  `U_ID` int(11) NOT NULL,
+  `Team_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reply`
 --
 
@@ -79,7 +90,9 @@ INSERT INTO `reply` (`Reply_No`, `Comm_No`, `U_ID`, `Date`, `Reply`, `Likes`, `D
 (6, 8, 1, 2022, 'Does the reply system works?', 0, 0),
 (8, 8, 1, 2022, 'does the reply system work? is the grammatically correct way', 0, 0),
 (9, 2, 1, 2022, 'can i submit a reply?', 0, 0),
-(10, 2, 1, 2022, 'can i submit a reply?', 0, 0);
+(10, 2, 1, 2022, 'can i submit a reply?', 0, 0),
+(11, 8, 1, 2022, 'test reply to fill the bar', 0, 0),
+(12, 8, 1, 2022, 'test reply to fill the bar', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -90,6 +103,7 @@ INSERT INTO `reply` (`Reply_No`, `Comm_No`, `U_ID`, `Date`, `Reply`, `Likes`, `D
 CREATE TABLE `teams` (
   `Team_ID` int(11) NOT NULL,
   `Team_Name` varchar(30) NOT NULL,
+  `Leader` int(11) NOT NULL,
   `Faculty` enum('computing','business','science','engineering') NOT NULL,
   `Batch` varchar(5) DEFAULT NULL,
   `Subject` varchar(50) DEFAULT NULL,
@@ -162,6 +176,13 @@ ALTER TABLE `comments`
   ADD KEY `U_ID` (`U_ID`);
 
 --
+-- Indexes for table `join_team`
+--
+ALTER TABLE `join_team`
+  ADD KEY `Team_ID` (`Team_ID`),
+  ADD KEY `U_ID` (`U_ID`);
+
+--
 -- Indexes for table `reply`
 --
 ALTER TABLE `reply`
@@ -173,19 +194,22 @@ ALTER TABLE `reply`
 -- Indexes for table `teams`
 --
 ALTER TABLE `teams`
-  ADD PRIMARY KEY (`Team_ID`);
+  ADD PRIMARY KEY (`Team_ID`),
+  ADD KEY `Leader` (`Leader`);
 
 --
 -- Indexes for table `trequest`
 --
 ALTER TABLE `trequest`
-  ADD PRIMARY KEY (`Request_ID`);
+  ADD PRIMARY KEY (`Request_ID`),
+  ADD KEY `Team_ID` (`Team_ID`);
 
 --
 -- Indexes for table `tsearch`
 --
 ALTER TABLE `tsearch`
-  ADD PRIMARY KEY (`TSearchNo`);
+  ADD PRIMARY KEY (`TSearchNo`),
+  ADD KEY `U_ID` (`U_ID`);
 
 --
 -- Indexes for table `users`
@@ -207,7 +231,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
-  MODIFY `Reply_No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Reply_No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `teams`
@@ -244,11 +268,36 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`U_ID`) REFERENCES `users` (`U_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `join_team`
+--
+ALTER TABLE `join_team`
+  ADD CONSTRAINT `join_team_ibfk_1` FOREIGN KEY (`Team_ID`) REFERENCES `teams` (`Team_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `join_team_ibfk_2` FOREIGN KEY (`U_ID`) REFERENCES `users` (`U_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `reply`
 --
 ALTER TABLE `reply`
   ADD CONSTRAINT `reply_ibfk_1` FOREIGN KEY (`Comm_No`) REFERENCES `comments` (`Comm_No`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reply_ibfk_2` FOREIGN KEY (`U_ID`) REFERENCES `users` (`U_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teams`
+--
+ALTER TABLE `teams`
+  ADD CONSTRAINT `teams_ibfk_1` FOREIGN KEY (`Leader`) REFERENCES `users` (`U_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `trequest`
+--
+ALTER TABLE `trequest`
+  ADD CONSTRAINT `trequest_ibfk_1` FOREIGN KEY (`Team_ID`) REFERENCES `teams` (`Team_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tsearch`
+--
+ALTER TABLE `tsearch`
+  ADD CONSTRAINT `tsearch_ibfk_1` FOREIGN KEY (`U_ID`) REFERENCES `users` (`U_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
