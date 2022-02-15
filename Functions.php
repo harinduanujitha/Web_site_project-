@@ -72,26 +72,6 @@ function ctrlComment($conn){
 	}
 }
 
-function addLike($conn){
-	if(isset($_POST['Like'])){
-		$CommNo=$_POST['CommNo'];
-
-		$sql="UPDATE comments SET Likes = Likes + 1 WHERE Comm_No= '$CommNo'";
-		$result = $conn->query($sql);
-	}
-}
-
-function addDislike($conn){
-	if(isset($_POST['Dislike'])){
-		$CommNo=$_POST['CommNo'];
-		
-		$sql="UPDATE comments SET Dislikes = Dislikes + 1 WHERE Comm_No='$CommNo'";
-
-		$result = $conn->query($sql);
-	}
-}
-
-
 function getComment($conn){
 	$sql="	SELECT comments.*, users.U_Name
 			FROM comments
@@ -116,6 +96,7 @@ function getComment($conn){
 		$thisComment=$raw['Comm_No'];	
 	}
 }
+//function currently not in use
 function getReply($conn){
 
 	$sql="SELECT*FROM reply WHERE Comm_No='$comm_No'";
@@ -139,5 +120,7 @@ function getReply($conn){
 	echo"</div>";
 }
 
-
+function setTeam($conn){
+	
+}
 ?>
